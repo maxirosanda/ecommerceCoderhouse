@@ -3,11 +3,11 @@ import React from 'react'
 import Header from '../components/Header'
 import Categories from '../components/Categories'
 
-const Home = () => {
+const Home = ({handleCategorySelected}) => {
   return (
     <>
       <Header title="Ecommerce"/>
-      <Categories/>
+      <Categories handleCategorySelected={handleCategorySelected}/>
     </>
   )
 }

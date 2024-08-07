@@ -2,25 +2,36 @@ import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import products from '../data/products.json'
+import Search from '../components/Search'
+import ProductItem from '../components/ProductItem'
 
 const ItemListCategories = ({category}) => {
 
-    const [categoryFilted,setCategoryFilted] = useState([])
+  const [productsFiltered,setProductsFiltered] = useState([])
 
   useEffect(()=>{
-    setCategoryFilted(products.filter(product => product.category === category))
+    setProductsFiltered(products.filter(product => product.category === category))
   },[category])
+
+  const onSearch = (input) => {
+
+    if(input){
+      setProductsFiltered(productsFiltered.filter(product => product.title.includes(input) ))
+    }else{
+      setProductsFiltered(products.filter(product => product.category === category))
+    }
+   
+  }
 
   return (
     <>
-      <Header title="Productos"/>
-      <View>
+        <Header title={category}/>
+        <Search onSearch={onSearch}/>
         <FlatList
-          data={categoryFilted}
+          data={productsFiltered}
           keyExtractor={item=>item.id}
-          renderItem={({item})=> <View><Text>{item.title}</Text></View>}
+          renderItem={({item})=> <ProductItem product={item}/>}
         />
-      </View>
     </>
   )
 }

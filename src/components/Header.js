@@ -2,17 +2,9 @@ import { Pressable, StyleSheet, Text, View,StatusBar,Platform } from 'react-nati
 import { colors } from '../global/colors'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
-const Header = ({title, handleCategorySelected}) => {
+const Header = ({title}) => {
   return (
     <View style={styles.container}>
-      {
-        handleCategorySelected ?
-          <Pressable style={styles.icon} onPress={() => handleCategorySelected("")}>
-            <FontAwesome5  name="less-than" size={24} color="black" />
-          </Pressable>
-          :
-          null
-      }
       <Text style={styles.text}>{title}</Text>
     </View>
   )

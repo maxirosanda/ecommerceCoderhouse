@@ -5,8 +5,8 @@ import products from '../data/products.json'
 import Search from '../components/Search'
 import ProductItem from '../components/ProductItem'
 
-const ItemListCategories = ({category,  handleCategorySelected,handleProductDetailId}) => {
-
+const ItemListCategories = ({route}) => {
+  const {category} = route.params
   const [productsFiltered,setProductsFiltered] = useState([])
 
   useEffect(()=>{
@@ -24,15 +24,14 @@ const ItemListCategories = ({category,  handleCategorySelected,handleProductDeta
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-        <Header title={category}  handleCategorySelected={ handleCategorySelected}/>
+    <View style={styles.container}>
         <Search onSearch={onSearch}/>
         <FlatList
           data={productsFiltered}
           keyExtractor={item=>item.id}
-          renderItem={({item})=> <ProductItem product={item} handleProductDetailId={handleProductDetailId}/>}
+          renderItem={({item})=> <ProductItem product={item}/>}
         />
-    </SafeAreaView>
+    </View>
   )
 }
 

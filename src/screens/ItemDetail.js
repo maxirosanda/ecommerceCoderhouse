@@ -4,10 +4,12 @@ import Header from '../components/Header'
 import products from '../data/products.json'
 import { colors } from '../global/colors'
 
-const ItemDetail = ({id}) => {
+const ItemDetail = ({route}) => {
+
+  const {id} = route.params
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Header title="Detalle"/>
+    <View style={styles.container}>
       <View style={styles.containerDetail}>
         <Image
           style={styles.image}
@@ -23,7 +25,7 @@ const ItemDetail = ({id}) => {
           <Text style={styles.buttonText}>Comprar</Text>
         </Pressable>
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 

@@ -1,6 +1,4 @@
-import { StyleSheet, Text, View,SafeAreaView } from 'react-native'
-import React from 'react'
-import Header from '../components/Header'
+import { StyleSheet,View} from 'react-native'
 import Categories from '../components/Categories'
 
 const Home = () => {

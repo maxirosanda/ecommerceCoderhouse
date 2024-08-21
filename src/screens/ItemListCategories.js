@@ -1,10 +1,12 @@
 import { FlatList, StyleSheet, View} from 'react-native'
 import  { useEffect, useState } from 'react'
-import products from '../data/products.json'
 import Search from '../components/Search'
 import ProductItem from '../components/ProductItem'
+import { useSelector } from 'react-redux'
 
 const ItemListCategories = ({route}) => {
+
+  const products = useSelector((state => state.shop.products))
   const {category} = route.params
   const [productsFiltered,setProductsFiltered] = useState([])
 

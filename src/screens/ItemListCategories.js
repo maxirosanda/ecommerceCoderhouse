@@ -1,18 +1,21 @@
-import { FlatList, StyleSheet, View} from 'react-native'
+import { FlatList, StyleSheet, View,Text} from 'react-native'
 import  { useEffect, useState } from 'react'
 import Search from '../components/Search'
 import ProductItem from '../components/ProductItem'
-import { useSelector } from 'react-redux'
+import { useGetProductsQuery } from '../services/shop'
+
 
 const ItemListCategories = ({route}) => {
 
-  const products = useSelector((state => state.shop.products))
+  const {data:products,isSuccess,isLoading,isError,error} = useGetProductsQuery()
   const {category} = route.params
   const [productsFiltered,setProductsFiltered] = useState([])
 
   useEffect(()=>{
-    setProductsFiltered(products.filter(product => product.category === category))
-  },[category])
+    if(isSuccess){
+      setProductsFiltered(products.filter(product => product.category === category))
+    }
+  },[category,isSuccess])
 
   const onSearch = (input) => {
 
@@ -23,6 +26,9 @@ const ItemListCategories = ({route}) => {
     }
    
   }
+
+  if(isLoading) return <View><Text>cargando</Text></View>
+  if(isError) return <View><Text>{error.message}</Text></View>
 
   return (
     <View style={styles.container}>

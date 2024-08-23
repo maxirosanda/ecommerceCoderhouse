@@ -7,13 +7,13 @@ import { useGetProductsQuery } from '../services/shop'
 
 const ItemListCategories = ({route}) => {
 
-  const {data:products,isSuccess,isLoading,isError,error} = useGetProductsQuery()
   const {category} = route.params
+  const {data:products,isSuccess,isLoading,isError,error} = useGetProductsQuery(category)
   const [productsFiltered,setProductsFiltered] = useState([])
 
   useEffect(()=>{
     if(isSuccess){
-      setProductsFiltered(products.filter(product => product.category === category))
+      setProductsFiltered(products)
     }
   },[category,isSuccess])
 
@@ -22,7 +22,7 @@ const ItemListCategories = ({route}) => {
     if(input){
       setProductsFiltered(productsFiltered.filter(product => product.title.includes(input) ))
     }else{
-      setProductsFiltered(products.filter(product => product.category === category))
+      setProductsFiltered(products)
     }
    
   }

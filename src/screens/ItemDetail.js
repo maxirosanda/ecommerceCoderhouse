@@ -1,10 +1,20 @@
 import { Image, Pressable, StyleSheet, Text, View} from 'react-native'
 import products from '../data/products.json'
 import { colors } from '../global/colors'
+import { addItemCart } from '../features/cart/cartSlice'
+import { useDispatch } from 'react-redux'
+import { useNavigation } from '@react-navigation/native'
 
 const ItemDetail = ({route}) => {
 
   const {id} = route.params
+  const navigation = useNavigation()
+  const dispatch = useDispatch()
+
+  const handleAddItemCart = () => {
+    dispatch(addItemCart({...products[id],quantity:1}))
+    navigation.navigate("CartStack")
+  }
 
   return (
     <View style={styles.container}>
@@ -19,7 +29,7 @@ const ItemDetail = ({route}) => {
           <Text style={styles.description}>{products[id].description}</Text>
           <Text style={styles.price}>Precio: {products[id].price} $</Text>
         </View>
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={handleAddItemCart}>
           <Text style={styles.buttonText}>Comprar</Text>
         </Pressable>
       </View>

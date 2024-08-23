@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View,FlatList } from 'react-native'
-import cart from '../data/cart.json'
+
 import CartItem from '../components/CartItem'
 import { colors } from '../global/colors'
+import { useSelector } from 'react-redux'
 
 const Cart = () => {
+  const cart = useSelector(state => state.cart)
   return (
     <View style={styles.container}>
       <FlatList

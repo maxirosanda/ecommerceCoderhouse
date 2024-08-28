@@ -1,11 +1,28 @@
-import { StyleSheet, Text, View,FlatList } from 'react-native'
+import { StyleSheet, Text, View,FlatList, Pressable } from 'react-native'
 
 import CartItem from '../components/CartItem'
 import { colors } from '../global/colors'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { usePostOrderMutation } from '../services/shop'
+import { clearCart } from '../features/cart/cartSlice'
 
-const Cart = () => {
+const Cart = ({navigation}) => {
+
   const cart = useSelector(state => state.cart)
+  const [triggerPostOrder] = usePostOrderMutation()
+  const dispatch = useDispatch()
+
+  const handleAddOrder = () => {
+    const createdAt = new Date().toLocaleString()
+    const order = {
+      ...cart,
+      createdAt
+    }
+    triggerPostOrder({userId:"1",order})
+    dispatch(clearCart())
+    navigation.navigate("OrdersStack")
+
+  }
   return (
     <View style={styles.container}>
       <FlatList
@@ -14,7 +31,9 @@ const Cart = () => {
       renderItem={({item})=> <CartItem item={item}/> }
       />
       <View style={styles.containerConfirm}>
-        <Text style={styles.textConfirm}>Confirmar</Text>
+        <Pressable onPress={handleAddOrder}>
+          <Text style={styles.textConfirm}>Confirmar</Text>
+        </Pressable>
         <Text style={styles.textConfirm}>Total: {cart.total} $</Text>
       </View>
     </View>

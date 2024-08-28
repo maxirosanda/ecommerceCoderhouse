@@ -14,10 +14,14 @@ export const cartSlice = createSlice({
             const itemFound = state.items.find(item => item.id === id)
             itemFound ? itemFound.quantity + quantity : state.items.push(action.payload)
             state.total+= price * quantity
+        },
+        clearCart:(state) => {
+            state.items = [],
+            state.total = 0
         }
     }
 })
 
-export const {addItemCart} = cartSlice.actions
+export const {addItemCart,clearCart} = cartSlice.actions
 
 export default cartSlice.reducer

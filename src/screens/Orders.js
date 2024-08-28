@@ -1,8 +1,14 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-import orders from '../data/orders.json'
 import OrderItem from '../components/OrderItem'
+import { useGetOrdersByUserQuery } from '../services/shop'
+import { useEffect } from 'react'
 
 const Orders = () => {
+
+  const {data:orders,isSuccess,isError,error,isLoading} = useGetOrdersByUserQuery("1")
+
+
+  if(isLoading) return <View><Text>cargando</Text></View>
   return (
     <View>
       <FlatList

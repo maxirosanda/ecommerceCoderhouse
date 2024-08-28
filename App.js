@@ -3,9 +3,12 @@ import { StyleSheet } from 'react-native'
 import { useFonts } from 'expo-font'
 import { fonts } from './src/global/fonts'
 import { colors } from './src/global/colors'
-import Navigator from './src/navigation/Navigator'
+import MainNavigator from './src/navigation/MainNavigator'
 import { store } from './src/app/store'
 import { Provider } from 'react-redux'
+import Login from './src/screens/Login'
+import Register from './src/screens/Register'
+import AuthStack from './src/navigation/AuthStack'
 
 export default function App() {
 
@@ -19,7 +22,7 @@ export default function App() {
   return (
     <>
       <Provider store={store}>
-        <Navigator/>
+        <MainNavigator/>
       </Provider>
       <StatusBar style="light" backgroundColor={colors.green3} />
     </>

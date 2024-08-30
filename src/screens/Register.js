@@ -6,6 +6,7 @@ import SubmitButton from '../components/SubmitButton'
 import { useRegisterMutation } from '../services/auth'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../features/auth/authSlice'
+import { registerSchema } from '../validations/registerSchema'
 
 const Register = ({navigation}) => {
     const [email,setEmail] = useState("")
@@ -22,8 +23,33 @@ const Register = ({navigation}) => {
     },[isSuccess])
 
     const onSubmit = async () => {
-       const {data} = await triggerRegister({email,password})
-       dispatch(setUser({email:data.email,idToken:data.idToken}))
+      try {
+        registerSchema.validateSync({email,password,confirmPassword})
+        const {data} = await triggerRegister({email,password})
+        dispatch(setUser({email:data.email,
+         idToken:data.idToken,
+         localId:data.localId
+       }))
+      } catch (error) {
+        switch(error.path){
+          case "email":
+            setErrorEmail(error.message)
+            setErrorPassword("")
+            setErrorConfirmPassword("")
+            break
+          case "password":
+            setErrorEmail("")
+            setErrorPassword(error.message)
+            setErrorConfirmPassword("")
+            break
+          case "confirmPassword":
+            setErrorEmail("")
+            setErrorPassword("")
+            setErrorConfirmPassword(error.message)
+            break
+            
+        }
+      }
     }
 
   return (

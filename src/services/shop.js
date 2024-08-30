@@ -31,6 +31,13 @@ export const shopApi = createApi({
                 method:"POST",
                 body:order
             })
+        }),
+        patchImageProfile:builder.mutation({
+            query:({image,localId})=> ({
+                url:`users/${localId}.json`,
+                method:"PATCH",
+                body:{image}
+            })
         })
 
     })
@@ -40,5 +47,6 @@ export const {  useGetCategoriesQuery,
                 useGetProductsQuery, 
                 useGetProductQuery,
                 usePostOrderMutation,
-                useGetOrdersByUserQuery
+                useGetOrdersByUserQuery,
+                usePatchImageProfileMutation
 } = shopApi

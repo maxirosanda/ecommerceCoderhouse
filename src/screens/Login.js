@@ -18,9 +18,6 @@ const Login = ({navigation}) => {
     const [triggerLogin,{data,isSuccess,isError,error}] = useLoginMutation()
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-        if(isSuccess) console.log(data)
-    },[isSuccess])
 
     const onSubmit = async () => {
         try {
@@ -32,8 +29,6 @@ const Login = ({navigation}) => {
             localId:data.localId
           }))
         } catch (error) {
-          console.log(error.path),
-          console.log(error.message)
           switch(error.path){
             case "email":
               setErrorEmail(error.message)

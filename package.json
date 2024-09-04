@@ -16,6 +16,8 @@
     "@reduxjs/toolkit": "^2.2.7",
     "expo": "~51.0.24",
     "expo-font": "^12.0.9",
+    "expo-image-picker": "~15.0.7",
+    "expo-location": "^17.0.1",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -24,8 +26,7 @@
     "react-native-screens": "^3.34.0",
     "react-native-web": "~0.19.10",
     "react-redux": "^9.1.2",
-    "yup": "^1.4.0",
-    "expo-image-picker": "~15.0.7"
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

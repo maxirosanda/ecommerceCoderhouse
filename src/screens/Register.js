@@ -18,9 +18,6 @@ const Register = ({navigation}) => {
     const [triggerRegister,{data,isSuccess}] = useRegisterMutation()
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-        if(isSuccess) console.log(data)
-    },[isSuccess])
 
     const onSubmit = async () => {
       try {

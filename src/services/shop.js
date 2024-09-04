@@ -38,6 +38,23 @@ export const shopApi = createApi({
                 method:"PATCH",
                 body:{image}
             })
+        }),
+        postUserLocation:builder.mutation({
+            query:({localId,userLocation})=> ({
+                url:`users/${localId}/locations.json`,
+                method:"POST",
+                body:userLocation
+            })
+        }),
+        getUser:builder.query({
+            query:({localId})=> `users/${localId}.json`,
+            transformResponse:(response) => {
+                const data = Object.entries(response.locations).map(item => ({id:item[0],...item[1]}))
+                return {
+                    ...response,
+                    locations:data
+                }
+            }
         })
 
     })
@@ -48,5 +65,7 @@ export const {  useGetCategoriesQuery,
                 useGetProductQuery,
                 usePostOrderMutation,
                 useGetOrdersByUserQuery,
-                usePatchImageProfileMutation
+                usePatchImageProfileMutation,
+                usePostUserLocationMutation,
+                useGetUserQuery
 } = shopApi

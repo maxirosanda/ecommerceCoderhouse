@@ -11,6 +11,7 @@ import Register from './src/screens/Register'
 import AuthStack from './src/navigation/AuthStack'
 import MyProfile from './src/screens/MyProfile'
 import ImageSelector from './src/screens/ImageSelector'
+import LocationSelector from './src/screens/LocationSelector'
 
 export default function App() {
 

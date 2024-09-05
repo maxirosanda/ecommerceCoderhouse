@@ -4,6 +4,7 @@ import { URL_FIREBASE } from '../firebase/database'
 export const shopApi = createApi({
     reducerPath:"shopApi",
     baseQuery:fetchBaseQuery({baseUrl:URL_FIREBASE}),
+    tagTypes:["userImage","userLocation","order"],
     endpoints:(builder) => ({
         getCategories: builder.query({
             query: () => "/categories.json"
@@ -23,28 +24,32 @@ export const shopApi = createApi({
             transformResponse:(response) => {
                 const data = Object.entries(response).map(item=> ({id:item[0],...item[1]}))
                 return data
-            }
+            },
+            providesTags:["order"]
         }),
         postOrder:builder.mutation({
             query:({userId,order}) => ({
                 url:`/orders/${userId}.json`,
                 method:"POST",
                 body:order
-            })
+            }),
+            invalidatesTags:["order"]
         }),
         patchImageProfile:builder.mutation({
             query:({image,localId})=> ({
                 url:`users/${localId}.json`,
                 method:"PATCH",
                 body:{image}
-            })
+            }),
+            invalidatesTags:["userImage"]
         }),
         postUserLocation:builder.mutation({
             query:({localId,userLocation})=> ({
                 url:`users/${localId}/locations.json`,
                 method:"POST",
                 body:userLocation
-            })
+            }),
+            invalidatesTags:["userLocation"]
         }),
         getUser:builder.query({
             query:({localId})=> `users/${localId}.json`,
@@ -54,7 +59,8 @@ export const shopApi = createApi({
                     ...response,
                     locations:data
                 }
-            }
+            },
+            providesTags:["userImage","userLocation"]
         })
 
     })

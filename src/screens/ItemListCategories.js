@@ -3,6 +3,7 @@ import  { useEffect, useState } from 'react'
 import Search from '../components/Search'
 import ProductItem from '../components/ProductItem'
 import { useGetProductsQuery } from '../services/shop'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 
 const ItemListCategories = ({route}) => {
@@ -27,7 +28,7 @@ const ItemListCategories = ({route}) => {
    
   }
 
-  if(isLoading) return <View><Text>cargando</Text></View>
+  if(isLoading) return <LoadingSpinner/>
   if(isError) return <View><Text>{error.message}</Text></View>
 
   return (

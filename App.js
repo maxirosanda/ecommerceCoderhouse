@@ -12,10 +12,13 @@ import AuthStack from './src/navigation/AuthStack'
 import MyProfile from './src/screens/MyProfile'
 import ImageSelector from './src/screens/ImageSelector'
 import LocationSelector from './src/screens/LocationSelector'
+import { init } from './src/db'
 
 export default function App() {
 
-
+  
+  init()
+  
   const [fontLoaded] = useFonts(fonts)
 
   if(!fontLoaded){

@@ -1,11 +1,26 @@
 import { Pressable, StyleSheet, Text, View,StatusBar,Platform } from 'react-native'
 import { colors } from '../global/colors'
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import AntDesign from '@expo/vector-icons/AntDesign'
+import { deleteSession } from '../db'
+import { useDispatch, useSelector } from 'react-redux'
+import { clearUser } from '../features/auth/authSlice'
 
 const Header = ({title}) => {
+
+  const dispatch = useDispatch()
+  const idToken = useSelector(state => state.auth.idToken)
+
+  const onLogout = () =>{
+    deleteSession()
+    dispatch(clearUser())
+  }
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{title}</Text>
+      {idToken && 
+      <Pressable onPress={onLogout} style={styles.logout}>
+        <AntDesign name="logout" size={30} color="black" />
+      </Pressable>}
     </View>
   )
 }
@@ -30,6 +45,11 @@ const styles = StyleSheet.create({
   icon:{
     position:"absolute",
     left:20
+  },
+  logout:{
+    position:"absolute",
+    right:10,
+    bottom:20
   }
 
 })

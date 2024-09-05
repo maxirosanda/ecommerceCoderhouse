@@ -2,13 +2,14 @@ import { StyleSheet, Text, View, FlatList } from 'react-native'
 import OrderItem from '../components/OrderItem'
 import { useGetOrdersByUserQuery } from '../services/shop'
 import { useEffect } from 'react'
+import LoadingSpinner from '../components/LoadingSpinner'
 
 const Orders = () => {
 
   const {data:orders,isSuccess,isError,error,isLoading} = useGetOrdersByUserQuery("1")
 
 
-  if(isLoading) return <View><Text>cargando</Text></View>
+  if(isLoading) return <LoadingSpinner/>
   return (
     <View>
       <FlatList

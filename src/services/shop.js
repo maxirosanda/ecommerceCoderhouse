@@ -20,16 +20,20 @@ export const shopApi = createApi({
             query:(id) => `/products/${id}.json`
         }),
         getOrdersByUser:builder.query({
-            query:(userId) =>`/orders/${userId}.json`,
+            query:(localId) =>`/orders/${localId}.json`,
             transformResponse:(response) => {
+                if(!response) return []
                 const data = Object.entries(response).map(item=> ({id:item[0],...item[1]}))
                 return data
             },
             providesTags:["order"]
         }),
+        getOrderByUser:builder.query({
+            query:({localId,orderId}) => `/orders/${localId}/${orderId}.json`
+        }),
         postOrder:builder.mutation({
-            query:({userId,order}) => ({
-                url:`/orders/${userId}.json`,
+            query:({localId,order}) => ({
+                url:`/orders/${localId}.json`,
                 method:"POST",
                 body:order
             }),
@@ -54,6 +58,11 @@ export const shopApi = createApi({
         getUser:builder.query({
             query:({localId})=> `users/${localId}.json`,
             transformResponse:(response) => {
+
+                if(!response) return {image:"",locations:[]}
+                if(!response.locations) response.locations = []
+                if(!response.image)  response.image = ""
+
                 const data = Object.entries(response.locations).map(item => ({id:item[0],...item[1]}))
                 return {
                     ...response,
@@ -73,5 +82,6 @@ export const {  useGetCategoriesQuery,
                 useGetOrdersByUserQuery,
                 usePatchImageProfileMutation,
                 usePostUserLocationMutation,
-                useGetUserQuery
+                useGetUserQuery,
+                useGetOrderByUserQuery
 } = shopApi

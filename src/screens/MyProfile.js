@@ -7,14 +7,17 @@ import LoadingSpinner from '../components/LoadingSpinner'
 
 const MyProfile = ({navigation}) => {
   const localId = useSelector(state => state.auth.localId)
-  const {data:user,isSuccess,isLoading} = useGetUserQuery({localId})
-
+  const {data:user,isSuccess,isLoading,isError,error} = useGetUserQuery({localId})
+  useEffect(()=>{
+    if(isSuccess) console.log(user)
+    if(isError) console.log(error)
+  },[isSuccess,isError])
 
   if(isLoading) return <LoadingSpinner/>
   return (
     <View style={styles.container}>
       <Image
-        source={user.image? 
+        source={user.image ? 
                 {uri:user.image}
                 :
                 require("../../assets/profile_default.png")}

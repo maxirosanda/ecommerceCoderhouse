@@ -9,6 +9,7 @@ import { clearCart } from '../features/cart/cartSlice'
 const Cart = ({navigation}) => {
 
   const cart = useSelector(state => state.cart)
+  const localId = useSelector(state => state.auth.localId)
   const [triggerPostOrder] = usePostOrderMutation()
   const dispatch = useDispatch()
 
@@ -18,11 +19,12 @@ const Cart = ({navigation}) => {
       ...cart,
       createdAt
     }
-    triggerPostOrder({userId:"1",order})
+    triggerPostOrder({localId,order})
     dispatch(clearCart())
     navigation.navigate("OrdersStack")
 
   }
+  if(cart.total === 0) return <View><Text>vacio</Text></View>
   return (
     <View style={styles.container}>
       <FlatList

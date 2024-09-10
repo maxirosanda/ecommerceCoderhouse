@@ -19,6 +19,13 @@ const Login = ({navigation}) => {
     const [triggerLogin,{data,isSuccess,isError,error}] = useLoginMutation()
     const dispatch = useDispatch()
 
+    useEffect(()=>{
+      if(isError) {
+        setErrorEmail("email o contraseña invalida")
+        setErrorPassword("email o contraseña invalida")
+      }
+    },[isError])
+
 
     const onSubmit = async () => {
         try {

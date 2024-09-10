@@ -4,7 +4,7 @@ import * as Location from 'expo-location';
 import MapPreview from '../components/MapPreview';
 import { mapStaticApi } from '../firebase/googleApi'
 import SubmitButton from '../components/SubmitButton'
-import { usePostUserLocationMutation } from '../services/shop';
+import { usePostUserLocationMutation } from '../services/users';
 import { useSelector } from 'react-redux';
 
 const LocationSelector = ({navigation}) => {

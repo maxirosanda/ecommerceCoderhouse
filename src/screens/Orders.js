@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
 import OrderItem from '../components/OrderItem'
-import {  useGetOrdersByUserQuery } from '../services/shop'
+import {  useGetOrdersByUserQuery } from '../services/orders'
 import LoadingSpinner from '../components/LoadingSpinner'
 import { useSelector } from 'react-redux'
 

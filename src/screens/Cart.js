@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,FlatList, Pressable } from 'react-native'
 import CartItem from '../components/CartItem'
 import { colors } from '../global/colors'
 import { useDispatch, useSelector } from 'react-redux'
-import { usePostOrderMutation } from '../services/shop'
+import { usePostOrderMutation } from '../services/orders'
 import { clearCart } from '../features/cart/cartSlice'
 
 const Cart = ({navigation}) => {

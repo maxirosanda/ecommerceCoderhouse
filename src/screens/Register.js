@@ -15,8 +15,15 @@ const Register = ({navigation}) => {
     const [errorEmail,setErrorEmail] = useState("")
     const [errorPassword,setErrorPassword] = useState("")
     const [errorConfirmPassword,setErrorConfirmPassword] = useState("")
-    const [triggerRegister,{data,isSuccess}] = useRegisterMutation()
+    const [triggerRegister,{data,isSuccess,isError,error}] = useRegisterMutation()
     const dispatch = useDispatch()
+
+    useEffect(()=>{
+      if(isError) {
+        setErrorEmail("email existente")
+      }
+    },[isError])
+
 
 
     const onSubmit = async () => {

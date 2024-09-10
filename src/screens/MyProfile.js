@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View,Image,FlatList } from 'react-native'
 import React, { useEffect } from 'react'
 import SubmitButton from '../components/SubmitButton'
-import { useGetUserQuery } from '../services/shop'
+import { useGetUserQuery } from '../services/users'
 import { useSelector } from 'react-redux'
 import LoadingSpinner from '../components/LoadingSpinner'
 

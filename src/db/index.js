@@ -1,4 +1,4 @@
-import * as SQLite from 'expo-sqlite'
+/*import * as SQLite from 'expo-sqlite'
 const db = SQLite.openDatabase('sessions.db')
 
 export const init = () => {
@@ -60,4 +60,4 @@ export const deleteSession = () => {
         })
     })
     return promise
-}
+}*/

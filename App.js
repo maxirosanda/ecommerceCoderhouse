@@ -6,18 +6,12 @@ import { colors } from './src/global/colors'
 import MainNavigator from './src/navigation/MainNavigator'
 import { store } from './src/app/store'
 import { Provider } from 'react-redux'
-import Login from './src/screens/Login'
-import Register from './src/screens/Register'
-import AuthStack from './src/navigation/AuthStack'
-import MyProfile from './src/screens/MyProfile'
-import ImageSelector from './src/screens/ImageSelector'
-import LocationSelector from './src/screens/LocationSelector'
-import { init } from './src/db'
+//import { init } from './src/db'
 
 export default function App() {
 
   
-  init()
+  //init()
   
   const [fontLoaded] = useFonts(fonts)
 

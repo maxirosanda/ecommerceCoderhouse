@@ -6,12 +6,12 @@ import { colors } from './src/global/colors'
 import MainNavigator from './src/navigation/MainNavigator'
 import { store } from './src/app/store'
 import { Provider } from 'react-redux'
-//import { init } from './src/db'
+import { init } from './src/db'
 
 export default function App() {
 
   
-  //init()
+  init()
   
   const [fontLoaded] = useFonts(fonts)
 

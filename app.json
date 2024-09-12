@@ -3,7 +3,6 @@
     "name": "ecommerceCoderhouse",
     "slug": "ecommerceCoderhouse",
     "version": "1.0.0",
-
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -18,10 +17,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.maxirosanda.ecommerceCoderhouse"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3a5d7e55-18d1-430d-b5cc-d1990ab1504c"
+      }
     }
   }
 }

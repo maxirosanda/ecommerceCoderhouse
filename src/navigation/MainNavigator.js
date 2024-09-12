@@ -4,7 +4,7 @@ import AuthStack from './AuthStack'
 import TabNavigator from './TabNavigator'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-//import { fetchSession } from '../db'
+import { fetchSession } from '../db'
 import { setUser } from '../features/auth/authSlice'
 
 const MainNavigator = () => {
@@ -12,15 +12,15 @@ const MainNavigator = () => {
     const idToken = useSelector(state => state.auth.idToken)
     const dispatch = useDispatch()
     
-   /* useEffect(()=>{
+    useEffect(()=>{
       (async ()=>{
         const sessions = await fetchSession()
-        if(sessions.rows.length){
-          dispatch(setUser(sessions.rows._array[0]))
+        if(sessions){
+          dispatch(setUser(sessions))
         }
       
       })()
-    },[])*/
+    },[])
 
   return (
    <NavigationContainer>

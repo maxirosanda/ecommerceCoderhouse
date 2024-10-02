@@ -7,11 +7,23 @@ import MainNavigator from './src/navigation/MainNavigator'
 import { store } from './src/app/store'
 import { Provider } from 'react-redux'
 import { init } from './src/db'
+import { useEffect } from 'react'
 
 export default function App() {
 
   
-  init()
+ useEffect(()=>{
+  (async ()=>{
+    try {
+     await init()
+     console.log('DB Initialized')
+    } catch (error) {
+       console.log('Initialization DB failed:')
+       console.log(error.message)
+    }
+   }
+   )()
+ },[])
   
   const [fontLoaded] = useFonts(fonts)
 

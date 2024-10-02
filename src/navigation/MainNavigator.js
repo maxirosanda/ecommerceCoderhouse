@@ -14,9 +14,14 @@ const MainNavigator = () => {
     
     useEffect(()=>{
       (async ()=>{
-        const sessions = await fetchSession()
-        if(sessions){
-          dispatch(setUser(sessions))
+        try {
+          const sessions = await fetchSession()
+          if(sessions){
+            console.log(sessions)
+            dispatch(setUser(sessions))
+          }
+        } catch (error) {
+          console.log(error.message)
         }
       
       })()

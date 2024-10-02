@@ -10,9 +10,14 @@ const Header = ({title}) => {
   const dispatch = useDispatch()
   const idToken = useSelector(state => state.auth.idToken)
 
-  const onLogout = () =>{
-    deleteSession()
-    dispatch(clearUser())
+  const onLogout = async () =>{
+    try {
+      const result = await deleteSession()
+      console.log(result)
+      dispatch(clearUser())
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <View style={styles.container}>

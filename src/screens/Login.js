@@ -32,7 +32,8 @@ const Login = ({navigation}) => {
           loginSchema.validateSync({email,password})
           const {data} = await triggerLogin({email,password})
           deleteSession()
-          insertSession(data)
+          const result = await insertSession(data)
+          console.log(result)
           dispatch(setUser({
             email:data.email,
             idToken:data.idToken,
@@ -50,6 +51,7 @@ const Login = ({navigation}) => {
               setErrorEmail("")
               break
               default:
+                console.log(error)
                 break
           }
      
